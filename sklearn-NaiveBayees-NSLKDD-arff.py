@@ -32,5 +32,6 @@ mislabeled_datapoints = (y_test != y_pred).sum()
 correct_datapoints = total_datapoints-mislabeled_datapoints
 percent_correct = (correct_datapoints / total_datapoints) * 100
 
+print("NaiveBayes results for NSL-KDD:\n")
 print("Total datapoints: %d\nCorrect datapoints: %d\nMislabeled datapoints: %d\nPercent correct: %.2f%%"
       % (total_datapoints, correct_datapoints, mislabeled_datapoints, percent_correct))

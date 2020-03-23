@@ -1,4 +1,6 @@
 # Results
+NaiveBayes results for NSL-KDD:
+
 Total datapoints: 22,544
 
 Correct datapoints: 17,976
