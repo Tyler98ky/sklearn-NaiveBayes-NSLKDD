@@ -7,18 +7,19 @@ import numpy as np
 KDDTrain, train_metadata = loadarff("KDDTrain+.arff")
 KDDTest, test_metadata = loadarff("KDDTest+.arff")
 
-training_nparray = np.asarray(KDDTrain.tolist())  # this is necessary to correctly shape the array
-
+# Preprocess
 enc = preprocessing.OrdinalEncoder()
-temp = enc.fit_transform(training_nparray)
-X_train = temp[:, :-1]  # All rows, omit last column
-y_train = np.ravel(temp[:, -1:])  # All rows, only the last column
+training_nparray = np.asarray(KDDTrain.tolist())  # This is necessary to correctly shape the array
+encoded_dataset = enc.fit_transform(training_nparray)  # All categorical features are now numerical
+
+X_train = encoded_dataset[:, :-1]  # All rows, omit last column
+y_train = np.ravel(encoded_dataset[:, -1:])  # All rows, only the last column
 
 
 testing_nparray = np.asarray(KDDTest.tolist())
-temp = enc.fit_transform(testing_nparray)
-X_test = temp[:, :-1]
-y_test = np.ravel(temp[:, -1:])
+encoded_dataset = enc.fit_transform(testing_nparray)
+X_test = encoded_dataset[:, :-1]
+y_test = np.ravel(encoded_dataset[:, -1:])
 
 
 gnb = GaussianNB()
